@@ -29,14 +29,16 @@ app.listen(9633, function(){
  
   }
 ];
+
 //-------% Get the Products %%-----------------------------------------------------------------------------------------
+
 app.get("/products", function(req, res){
 console.log("products Api is triggered");
 res.send(products);
 });
 
-
 //------------%% Add the Product   %%----------------------------------------------------------------------------------
+
 app.post("/product", function (req, res){
   var body = req.body;
   console.log(body);
@@ -47,13 +49,8 @@ app.post("/product", function (req, res){
   })
 })
 
-
-
-
-
-
-
 //------------%% Delete the Product   %%-------------------------------------------------------------------------------
+
 app.delete("/product/:productID", function(req, res){
   var Pid = req.params.productID;
   console.log(Pid);
