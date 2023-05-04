@@ -1,0 +1,15 @@
+<html>
+    <head>
+  
+    </head>
+
+    <body>
+        <form action="/uploadFile" method="post" enctype="multipart/form-data"> 
+            <!---action, method and  enctype is very important as well as name in form% 
+                This form name will be used in file upload after path'/' & before function(req, res) -->
+            <input type = 'file' name = 'mypic' multiple>  <!---For multiple files use multiple after name -->
+            
+            <button>Upload</button>
+        </form>
+    </body>
+</html>
