@@ -4,12 +4,12 @@ var transporter = nodemailer.createTransport({
     port: 587,
     auth: {
         user: "apikey",
-        pass: ""
+        pass: "" //api key from twilio sendgrid
     }
 })
 transporter.sendMail({
-    from: "r.reddyabhilash@gmail.com", // verified sender email
-    to: "rechu.abhilashreddy@gmail.com, udaykumar44456@gmail.com", // recipient email
+    from: "", // verified sender email
+    to: "", // recipient email
     subject: "Fuck off", // Subject line
     text: "This is nodemail checking", // plain text body
     html: `<!doctype html>
