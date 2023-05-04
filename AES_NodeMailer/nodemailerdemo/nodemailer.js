@@ -4,7 +4,7 @@ var transporter = nodemailer.createTransport({
     port: 587,
     auth: {
         user: "apikey",
-        pass: "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"
+        pass: ""
     }
 })
 transporter.sendMail({
