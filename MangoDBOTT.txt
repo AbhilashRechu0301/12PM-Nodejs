@@ -1,0 +1,300 @@
+Database  -> Collection  -> documents (JSON Object)
+
+
+> db
+ecommerce
+> db.createCollection('products'); // create the collections such as products, users, items etc,.
+{ "ok" : 1 }
+> db
+ecommerce
+> show collections;// shows or displays the collections such as products, users, items etc,.
+products
+> db.products.find().pretty(); // finds the collections such as products, users, items etc,.
+> db.products.insert({pid:101, name:'product 1'. price:1000});// inserted the collections such as products, users, items etc,.
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:52
+> db.products.insert({pid:101, name:'product 1', price:1000});// inserted the collections such as products, users, items etc,.
+WriteResult({ "nInserted" : 1 })
+> db.products.find().pretty(); // finds the collections such as products, users, items etc,.
+{
+        "_id" : ObjectId("6454acd6a2fd89e9ee0bc2c5"),
+        "pid" : 101,
+        "name" : "product 1",
+        "price" : 1000
+}
+> db.products.insert({pid:102, name:'product 2', price:2000});// inserted the collections such as products, users, items etc, &&& .insertmany can insert all the items that you wanted.
+WriteResult({ "nInserted" : 1 })
+> db.products.insert({pid:103, name:'product 3', price:3000});// inserted the collections such as products, users, items etc,.
+WriteResult({ "nInserted" : 1 })
+> db.products.insert({pid:104, name:'product 4', price:4000});// inserted the collections such as products, users, items etc,.
+WriteResult({ "nInserted" : 1 })
+> db.products.find().pretty();
+{
+        "_id" : ObjectId("6454acd6a2fd89e9ee0bc2c5"),
+        "pid" : 101,
+        "name" : "product 1",
+        "price" : 1000
+}
+{
+        "_id" : ObjectId("6454ad00a2fd89e9ee0bc2c6"),
+        "pid" : 102,
+        "name" : "product 2",
+        "price" : 2000
+}
+{
+        "_id" : ObjectId("6454ad0ba2fd89e9ee0bc2c7"),
+        "pid" : 103,
+        "name" : "product 3",
+        "price" : 3000
+}
+{
+        "_id" : ObjectId("6454ad16a2fd89e9ee0bc2c8"),
+        "pid" : 104,
+        "name" : "product 4",
+        "price" : 4000
+}
+> db.products.remove({"pid":104});// removed the collections such as products, users, items etc,.
+WriteResult({ "nRemoved" : 1 })
+> db.products.find().pretty();
+{
+        "_id" : ObjectId("6454acd6a2fd89e9ee0bc2c5"),
+        "pid" : 101,
+        "name" : "product 1",
+        "price" : 1000
+}
+{
+        "_id" : ObjectId("6454ad00a2fd89e9ee0bc2c6"),
+        "pid" : 102,
+        "name" : "product 2",
+        "price" : 2000
+}
+{
+        "_id" : ObjectId("6454ad0ba2fd89e9ee0bc2c7"),
+        "pid" : 103,
+        "name" : "product 3",
+        "price" : 3000
+}
+> db.products.update({'pid':103,$set:{price:9000}});
+uncaught exception: Error: need an update object or pipeline :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:451:15
+DBCollection.prototype.update@src/mongo/shell/collection.js:497:18
+@(shell):1:1
+> db.products.update({'pid':103,$set:{price:9000}});
+uncaught exception: Error: need an update object or pipeline :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:451:15
+DBCollection.prototype.update@src/mongo/shell/collection.js:497:18
+@(shell):1:1
+> db.products.update({'pid':103},{$set:{price:9000}});// updated the collections such as products, users, items etc,.
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.products.find().pretty();
+{
+        "_id" : ObjectId("6454acd6a2fd89e9ee0bc2c5"),
+        "pid" : 101,
+        "name" : "product 1",
+        "price" : 1000
+}
+{
+        "_id" : ObjectId("6454ad00a2fd89e9ee0bc2c6"),
+        "pid" : 102,
+        "name" : "product 2",
+        "price" : 2000
+}
+{
+        "_id" : ObjectId("6454ad0ba2fd89e9ee0bc2c7"),
+        "pid" : 103,
+        "name" : "product 3",
+        "price" : 9000
+}
+> db.products.find();// finds the collections such as products, users, items etc,.
+{ "_id" : ObjectId("6454acd6a2fd89e9ee0bc2c5"), "pid" : 101, "name" : "product 1", "price" : 1000 }
+{ "_id" : ObjectId("6454ad00a2fd89e9ee0bc2c6"), "pid" : 102, "name" : "product 2", "price" : 2000 }
+{ "_id" : ObjectId("6454ad0ba2fd89e9ee0bc2c7"), "pid" : 103, "name" : "product 3", "price" : 9000 }
+> db.products.find().pretty()
+{
+        "_id" : ObjectId("6454acd6a2fd89e9ee0bc2c5"),
+        "pid" : 101,
+        "name" : "product 1",
+        "price" : 1000
+}
+{
+        "_id" : ObjectId("6454ad00a2fd89e9ee0bc2c6"),
+        "pid" : 102,
+        "name" : "product 2",
+        "price" : 2000
+}
+{
+        "_id" : ObjectId("6454ad0ba2fd89e9ee0bc2c7"),
+        "pid" : 103,
+        "name" : "product 3",
+        "price" : 9000
+}
+>
+
+
+
+db: ott 
+
+collectiom: movies 
+
+3 documents: 3 objects
+> show dbs
+admin      0.000GB
+config     0.000GB
+ecommerce  0.000GB
+local      0.000GB
+> use ott
+switched to db ott
+> db
+ott
+> db.createCollection(movies);
+uncaught exception: ReferenceError: movies is not defined :
+@(shell):1:1
+> db.createCollection('movies');
+{ "ok" : 1 }
+> show collections
+movies
+> db.movies.insert({movie_id:1001, movie_name:RRR, movie_hrs:232});
+uncaught exception: ReferenceError: RRR is not defined :
+@(shell):1:34
+> db.movies.insert({movie_id:1001, movie_name:'RRR', movie_hrs:232});
+WriteResult({ "nInserted" : 1 })
+> db.movies.insert({movie_id:1001, movie_name:'KGF', movie_hrs:225});
+WriteResult({ "nInserted" : 1 })
+> db.movies.insert({movie_id:1001, movie_name:'K', movie_hrs:252});
+WriteResult({ "nInserted" : 1 })
+> db.movies.insert({movie_id:1001, movie_name:'K_II', movie_hrs:212});
+WriteResult({ "nInserted" : 1 })
+> db.movies.find().pretty();
+{
+        "_id" : ObjectId("645589b771cff7f943b75ef8"),
+        "movie_id" : 1001,
+        "movie_name" : "RRR",
+        "movie_hrs" : 232
+}
+{
+        "_id" : ObjectId("645589d071cff7f943b75ef9"),
+        "movie_id" : 1001,
+        "movie_name" : "KGF",
+        "movie_hrs" : 225
+}
+{
+        "_id" : ObjectId("645589e771cff7f943b75efa"),
+        "movie_id" : 1001,
+        "movie_name" : "K",
+        "movie_hrs" : 252
+}
+{
+        "_id" : ObjectId("645589f771cff7f943b75efb"),
+        "movie_id" : 1001,
+        "movie_name" : "K_II",
+        "movie_hrs" : 212
+}
+> db.movies.remove({movie_name:"K_II"});
+WriteResult({ "nRemoved" : 1 })
+> db.movies.find().pretty();
+{
+        "_id" : ObjectId("645589b771cff7f943b75ef8"),
+        "movie_id" : 1001,
+        "movie_name" : "RRR",
+        "movie_hrs" : 232
+}
+{
+        "_id" : ObjectId("645589d071cff7f943b75ef9"),
+        "movie_id" : 1001,
+        "movie_name" : "KGF",
+        "movie_hrs" : 225
+}
+{
+        "_id" : ObjectId("645589e771cff7f943b75efa"),
+        "movie_id" : 1001,
+        "movie_name" : "K",
+        "movie_hrs" : 252
+}
+> db.movies.update({movie_name:"RRR"},{$set:{movie_id:1003}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.movies.find().pretty();
+{
+        "_id" : ObjectId("645589b771cff7f943b75ef8"),
+        "movie_id" : 1003,
+        "movie_name" : "RRR",
+        "movie_hrs" : 232
+}
+{
+        "_id" : ObjectId("645589d071cff7f943b75ef9"),
+        "movie_id" : 1001,
+        "movie_name" : "KGF",
+        "movie_hrs" : 225
+}
+{
+        "_id" : ObjectId("645589e771cff7f943b75efa"),
+        "movie_id" : 1001,
+        "movie_name" : "K",
+        "movie_hrs" : 252
+}
+> db.movies.update({movie_name:"RRR"},{$set:{movie_id:1001}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.movies.update({movie_name:"KGF"},{$set:{movie_id:1002}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.movies.update({movie_name:"K"},{$set:{movie_id:1003}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.movies.find().pretty();
+{
+        "_id" : ObjectId("645589b771cff7f943b75ef8"),
+        "movie_id" : 1001,
+        "movie_name" : "RRR",
+        "movie_hrs" : 232
+}
+{
+        "_id" : ObjectId("645589d071cff7f943b75ef9"),
+        "movie_id" : 1002,
+        "movie_name" : "KGF",
+        "movie_hrs" : 225
+}
+{
+        "_id" : ObjectId("645589e771cff7f943b75efa"),
+        "movie_id" : 1003,
+        "movie_name" : "K",
+        "movie_hrs" : 252
+}
+> db.movies.update({movie_name:"K", movie_name:"RRR"},{$set:{movie_hrs:253, movie_hrs:235}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.movies.find().pretty();
+{
+        "_id" : ObjectId("645589b771cff7f943b75ef8"),
+        "movie_id" : 1001,
+        "movie_name" : "RRR",
+        "movie_hrs" : 235
+}
+{
+        "_id" : ObjectId("645589d071cff7f943b75ef9"),
+        "movie_id" : 1002,
+        "movie_name" : "KGF",
+        "movie_hrs" : 225
+}
+{
+        "_id" : ObjectId("645589e771cff7f943b75efa"),
+        "movie_id" : 1003,
+        "movie_name" : "K",
+        "movie_hrs" : 252
+}
+> db.movies.find().pretty();
+{
+        "_id" : ObjectId("645589b771cff7f943b75ef8"),
+        "movie_id" : 1001,
+        "movie_name" : "RRR",
+        "movie_hrs" : 235
+}
+{
+        "_id" : ObjectId("645589d071cff7f943b75ef9"),
+        "movie_id" : 1002,
+        "movie_name" : "KGF",
+        "movie_hrs" : 225
+}
+{
+        "_id" : ObjectId("645589e771cff7f943b75efa"),
+        "movie_id" : 1003,
+        "movie_name" : "K",
+        "movie_hrs" : 252
+}
+>
+
