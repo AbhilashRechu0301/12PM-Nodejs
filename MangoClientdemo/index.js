@@ -9,7 +9,7 @@ MongoClient.connect(url,{ useNewUrlParser: true }, function (err, db) {
   }
   //if (db){
   var dbo = db.db("Ott");
-  dbo.collection("products").insertOne({ useNewUrlParser: true },
+  dbo.collection("products").insertOne(
     {
       "pid": 107,
       "name": "product 7",
