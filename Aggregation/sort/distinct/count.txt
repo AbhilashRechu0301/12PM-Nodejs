@@ -1,0 +1,135 @@
+Aggregation:
+
+ show dbs
+Ecommerce  0.000GB
+Ott        0.000GB
+admin      0.000GB
+config     0.000GB
+local      0.000GB
+> use Ott
+switched to db Ott
+> show collections
+categories
+movies
+products
+users
+> db.products.find().pretty()
+{
+        "_id" : ObjectId("6466907d8966e252360de59b"),
+        "pid" : 1,
+        "name" : "item 1",
+        "description" : "some Desc",
+        "imageUrl" : "Urlimg",
+        "price" : 400,
+        "quantity" : 5,
+        "seller" : "Abhilash",
+        "__v" : 0
+}
+> db.products.find().pretty()
+{
+        "_id" : ObjectId("6466907d8966e252360de59b"),
+        "pid" : 1,
+        "name" : "item 1",
+        "description" : "some Desc",
+        "imageUrl" : "Urlimg",
+        "price" : 400,
+        "quantity" : 5,
+        "seller" : "Abhilash",
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("6466a39a2610e337b106a58a"),
+        "pid" : 2,
+        "name" : "item 2",
+        "description" : "some Desct",
+        "imageUrl" : "Urlimgo",
+        "price" : 600,
+        "quantity" : 7,
+        "seller" : "Abhilash",
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("6466a3a52610e337b106a58c"),
+        "pid" : 3,
+        "name" : "item 3",
+        "description" : "some Desct",
+        "imageUrl" : "Urlimgt",
+        "price" : 1200,
+        "quantity" : 5,
+        "seller" : "Abhilash",
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("6466a3ae2610e337b106a58e"),
+        "pid" : 4,
+        "name" : "item 4",
+        "description" : "some Descf",
+        "imageUrl" : "Urlimgf",
+        "price" : 2000,
+        "quantity" : 1,
+        "seller" : "Ajay",
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("6466a3b62610e337b106a590"),
+        "pid" : 5,
+        "name" : "item 5",
+        "description" : "some Descv",
+        "imageUrl" : "Urlimgv",
+        "price" : 19000,
+        "quantity" : 8,
+        "seller" : "Ajay",
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("6466a3bf2610e337b106a592"),
+        "pid" : 6,
+        "name" : "item 6",
+        "description" : "some Descu",
+        "imageUrl" : "Urlimgu",
+        "price" : 100,
+        "quantity" : 3,
+        "seller" : "uday",
+        "__v" : 0
+}
+> db.products.aggregate([{$group : {-id:"seller", productsCount : {$sum :1}}}])
+uncaught exception: SyntaxError: expected property name, got '-' :
+@(shell):1:34
+> db.products.aggregate([{$group : {-id:"seller", productsCount : {$sum :1}}}]);
+uncaught exception: SyntaxError: expected property name, got '-' :
+@(shell):1:34
+> db.products.aggregate([{$group : {_id:"seller", productsCount : {$sum :1}}}]);
+{ "_id" : "seller", "productsCount" : 6 }
+> db.products.aggregate([{$group : {_id:"$seller", productsCount : {$sum :1}}}]);
+{ "_id" : "Abhilash", "productsCount" : 3 }
+{ "_id" : "Ajay", "productsCount" : 2 }
+{ "_id" : "uday", "productsCount" : 1 }
+
+//-------------------------------------------------------------------------------------------------------------
+
+Distinct() &&& count();
+______________________________
+
+> db.products.distinct('seller')
+[ "Abhilash", "Ajay", "uday" ]
+> db.products.distinct('name')
+[ "item 1", "item 2", "item 3", "item 4", "item 5", "item 6" ]
+> db.products.count();
+6
+
+
+
+
+//---------------------------------------------------------------------------------------
+
+sorting():
+------from low-high:
+
+db.products.find().sort({price:1}).pretty();
+
+------from high-low:
+
+sorting():
+from low-high:
+
+db.products.find().sort({price:-1}).pretty();
